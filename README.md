@@ -1,6 +1,7 @@
 ### REST API PRACTICE 
   https://github.com/sumantopal07/Rest-API-Intermediate-Hackerrank-Test
 ### PROMISES
+  http://csbin.io/promises
 
 > CHALLENGE 1: Using setTimeout, print the string 'Hello!' after 1000ms.
 
