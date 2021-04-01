@@ -113,17 +113,35 @@ getAllData();
 ### ITERATORS
   http://csbin.io/iterators
 
-> CHALLENGE 1: Using setTimeout, print the string 'Hello!' after 1000ms.
+> CHALLENGE 1: A) Create a for loop that iterates through an array and returns the sum of the elements of the array.
+B) Create a functional iterator for an array that returns each value of the array when called, one element at a time.
 
 ```js
-function sayHello() {
-    setTimeout(() => {
-        console.log("hello");
-    }, 1000);
+function sumFunc(arr) {
+    return arr.reduce((currentTotal,item)=>{
+        return item+currentTotal;
+    },0);
 }
 
-console.log("hi");
-sayHello();
+const array = [1, 2, 3, 4];
+console.log(sumFunc(array)); // -> should log 10
+
+function returnIterator(arr) {
+    let i=0;
+    function inner(){
+        const element = arr[i];
+        i++;
+        return element;
+    }
+    return inner;
+}
+
+const array2 = ['a', 'b', 'c', 'd'];
+const myIterator = returnIterator(array2);
+console.log(myIterator()); // -> should log 'a'
+console.log(myIterator()); // -> should log 'b'
+console.log(myIterator()); // -> should log 'c'
+console.log(myIterator()); // -> should log 'd'
 ```
 
 > CHALLENGE 2:Create a promise. Have it resolve with a value of 'Resolved!' in resolve after a delay of 1000ms, using setTimeout. Print the contents of the promise after it has been resolved by passing console.log to .then
