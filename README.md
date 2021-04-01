@@ -163,15 +163,33 @@ console.log(iteratorWithNext.next()); // -> should log 2
 console.log(iteratorWithNext.next()); // -> should log 3
 ```
 
-> CHALLENGE 3: Create another promise. Now have it reject with a value of "Rejected!" without using setTimeout. Print the contents of the promise after it has been rejected by passing console.log to .catch
+> CHALLENGE 3: Write code to iterate through an entire array using your nextIterator and sum the values.
 
 ```js
-var promise = new Promise(function (resolve, reject) {
-    reject();
-})
-promise.catch(() => {
-    console.log("Reject!");
-})
+function sumArray(arr) {
+    function returnNextELement(arr)
+    {
+        let i=0;
+        function inner(){
+            const num = arr[i];
+            i++;
+            return num;
+        }
+        return { next: inner};
+    }
+    const it = returnNextELement(arr);
+    let sum=0;
+    while(true)
+    {
+        let num = it.next();
+        if(isNaN(num))
+            break;
+        sum+=num;        
+    }
+    return sum;
+}
+const array4 = [1, 2, 3, 4];
+console.log(sumArray(array4)); // -> should log 10
 ```
 
 > CHALLENGE 4: Promises are asynchronous and we're now going to prove that they indeed are! Create a promise and have it resolve with the value of "Promise has been resolved!" Then uncomment the code at bottom of Challenge 4. What order do we expect "Promise has been resolved!" and "I'm not the promise!" to print? Why?
