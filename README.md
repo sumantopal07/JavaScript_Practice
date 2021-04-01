@@ -144,16 +144,23 @@ console.log(myIterator()); // -> should log 'c'
 console.log(myIterator()); // -> should log 'd'
 ```
 
-> CHALLENGE 2:Create a promise. Have it resolve with a value of 'Resolved!' in resolve after a delay of 1000ms, using setTimeout. Print the contents of the promise after it has been resolved by passing console.log to .then
-
+> CHALLENGE 2:Create an iterator with a next method that returns each value of the array when .next is called.  
 ```js
-var promise = new Promise(function (resolve, reject) {
-    setTimeout(resolve, 1000);
-});
+function nextIterator(arr) {
+    let i = 0;
+    function inner() {
+        const element = arr[i];
+        i++;
+        return element;
+    }
+    return { next: inner };
+}
 
-promise.then(() => {
-    console.log("Resolved!");
-})
+const array3 = [1, 2, 3];
+const iteratorWithNext = nextIterator(array3);
+console.log(iteratorWithNext.next()); // -> should log 1
+console.log(iteratorWithNext.next()); // -> should log 2
+console.log(iteratorWithNext.next()); // -> should log 3
 ```
 
 > CHALLENGE 3: Create another promise. Now have it reject with a value of "Rejected!" without using setTimeout. Print the contents of the promise after it has been rejected by passing console.log to .catch
